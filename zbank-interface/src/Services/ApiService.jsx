@@ -10,14 +10,14 @@ export const enviarDatos = async (data) => {
     const respuesta = await axios.post(url, data);
     console.log(respuesta)
     return respuesta.data;
-    
+
   } catch (error) {
     throw error;
   }
 };
 
 
-export const obtenerDatosDivisas = async() => {
+export const obtenerDatosDivisas = async () => {
   const url = postMethodUrl + '8080/zbank/divisas';
   try {
     const respuesta = await axios.get(url);
@@ -28,7 +28,8 @@ export const obtenerDatosDivisas = async() => {
   }
 }
 
-export const obtenerDatosTiposDocumentos= async() => {
+
+export const obtenerDatosTiposDocumentos = async () => {
   const url = postMethodUrl + '8080/zbank/tiposDocumentos';
   try {
     const respuesta = await axios.get(url);

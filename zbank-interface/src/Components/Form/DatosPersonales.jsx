@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { obtenerDatosTiposDocumentos } from "../../Services/ApiService";
 
+
 function DatosPersonales({ data, transferenciaDatos }) {
+
   const [emailError, setEmailError] = useState("");
   const [docError, setDocError] = useState("");
   const [nameError, setNameError] = useState("");
   const [lastNameError, setLastNameError] = useState("");
   const items = data;
   const [dataTiposDocumentos, setDataTiposDocumentos] = useState([]);
-  
-  /*useEffect(() => {
+
+
+  useEffect(() => {
     async function fetch() {
       try {
         const info = await obtenerDatosTiposDocumentos();
@@ -26,18 +29,18 @@ function DatosPersonales({ data, transferenciaDatos }) {
       }
     }
     fetch();
-  }, [items, transferenciaDatos]);
+  }, [items, transferenciaDatos])
 
-  */
 
-  useEffect(() => {
+
+  /*useEffect(() => {
     async function fetch() {
       const info = await obtenerDatosTiposDocumentos();
       setDataTiposDocumentos(info);
     }
     fetch();
-  }, []);
-  
+  }, []);*/
+
   const updateValuesForm = (e) => {
     const { id, value } = e.target;
     const copyState = { ...items };
@@ -86,10 +89,12 @@ function DatosPersonales({ data, transferenciaDatos }) {
     transferenciaDatos(copyState);
   };
 
+
   const validateEmail = (email) => {
     const emailRegex = /^(?=.{1,256}$)[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
+
 
   const validateDoc = (doc) => {
     // Verificar que el número de documento sea un número positivo sin caracteres especiales
@@ -97,15 +102,18 @@ function DatosPersonales({ data, transferenciaDatos }) {
     return docRegex.test(doc) && doc >= 0;
   };
 
+
   const validateName = (name) => {
     const nameRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{1,20}$/;
     return nameRegex.test(name);
   };
 
+
   const validateLastName = (lastName) => {
     const lastNameRegex = /^[a-zA-Z0-9\sáéíóúÁÉÍÓÚñÑ]{1,20}$/;
     return lastNameRegex.test(lastName);
   };
+
 
   const handleKeyDown = (e) => {
     const key = e.key;
@@ -118,6 +126,7 @@ function DatosPersonales({ data, transferenciaDatos }) {
     }
   };
 
+
   const handleKeyDownOnlyLetters = (e) => {
     const key = e.key;
     const allowedKeys = ["Backspace", "ArrowLeft", "ArrowRight", "Delete"];
@@ -129,11 +138,12 @@ function DatosPersonales({ data, transferenciaDatos }) {
     }
   };
 
+
   return (
     <React.Fragment>
       <Row className="mb-3">
         <Col md={6}>
-          <Form.Text className="form-text-content">Nombre Completo</Form.Text>
+          <Form.Text className="form-text-content"> Nombre Completo </Form.Text>
           <Form.Control
             type="text"
             id="nombre"
@@ -146,7 +156,7 @@ function DatosPersonales({ data, transferenciaDatos }) {
           )}
         </Col>
         <Col md={6}>
-          <Form.Text className="form-text-content">Apellidos</Form.Text>
+          <Form.Text className="form-text-content"> Apellidos </Form.Text>
           <Form.Control
             type="text"
             id="apellido"
@@ -161,8 +171,10 @@ function DatosPersonales({ data, transferenciaDatos }) {
       </Row>
       <Row className="mb-3">
         <Col md={6}>
-          <Form.Text className="form-text-content">Tipo de documento</Form.Text>
-          <Form.Select id="tipoDocumento" onChange={(e) => updateValuesForm(e)}>
+          <Form.Text className="form-text-content"> Tipo de documento </Form.Text>
+          <Form.Select
+            id="tipoDocumento"
+            onChange={(e) => updateValuesForm(e)}>
             {dataTiposDocumentos && (
               <>
                 {dataTiposDocumentos.map((item, index) => (
@@ -175,9 +187,7 @@ function DatosPersonales({ data, transferenciaDatos }) {
           </Form.Select>
         </Col>
         <Col md={6}>
-          <Form.Text className="form-text-content">
-            Numero de documento
-          </Form.Text>
+          <Form.Text className="form-text-content"> Numero de documento </Form.Text>
           <Form.Control
             id="numeroDocumento"
             type="number"
@@ -193,9 +203,7 @@ function DatosPersonales({ data, transferenciaDatos }) {
       </Row>
       <Row className="mb-3">
         <Col md={12}>
-          <Form.Text className="form-text-content">
-            Correo electrónico
-          </Form.Text>
+          <Form.Text className="form-text-content"> Correo electrónico </Form.Text>
           <Form.Control
             id="correo"
             type="email"
